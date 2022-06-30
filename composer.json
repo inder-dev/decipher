@@ -119,13 +119,13 @@
                 ]
             },
             "pre-commit": [
-                "docker-compose exec -T laravel-api composer run pre-commit"
+                "docker-compose exec -T decipher composer run pre-commit"
             ],
             "pre-push": [
-                "docker-compose exec -T laravel-api composer run pre-push"
+                "docker-compose exec -T decipher composer run pre-push"
             ],
             "post-merge": [
-                "docker-compose exec -T laravel-api composer run post-merge"
+                "docker-compose exec -T decipher composer run post-merge"
             ]
         }
     },

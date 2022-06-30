@@ -3,11 +3,11 @@ heroku_account_email = ""
 
 heroku_api_key = ""
 
-heroku_pipeline_name = "laravel-api-pipeline"
+heroku_pipeline_name = "decipher-pipeline"
 
-heroku_staging_app = "laravel-api-staging"
+heroku_staging_app = "decipher-staging"
 
-heroku_production_app = "laravel-api-prod"
+heroku_production_app = "decipher-prod"
 
 heroku_region = "eu"
 

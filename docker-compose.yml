@@ -1,12 +1,12 @@
 version : "3"
 services:
-  laravel-api:
+  decipher:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel-api
+    container_name: decipher
     depends_on:
-      - laravel-pg
+      - decipher-pg
     volumes:
       - .:/var/www/html
     restart: always
@@ -20,31 +20,31 @@ services:
       QUEUE_CONNECTION: 'database'
       XDEBUG_START_WITH_REQUEST: 'no'
     networks:
-      laravel-api-network:
+      decipher-network:
         ipv4_address: 220.223.1.1
     extra_hosts:
       - host.docker.internal:host-gateway
 
-  laravel-pg:
+  decipher-pg:
     image: postgres:latest
     restart: always
     environment:
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: test_db
-    container_name: laravel-pg
+    container_name: decipher-pg
     volumes:
-      - laravel-pg-disk:/var/lib/postgres
+      - decipher-pg-disk:/var/lib/postgres
     networks:
-      laravel-api-network:
+      decipher-network:
         ipv4_address: 220.223.1.2
 
 # On-disk storage of DB data, when containers are stopped/removed
 volumes:
-  laravel-pg-disk: {}
+  decipher-pg-disk: {}
 
 # Local network for services running using this docker-compose config
 networks:
-  laravel-api-network:
+  decipher-network:
     ipam:
       driver: default
       config:

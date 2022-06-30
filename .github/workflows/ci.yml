@@ -35,7 +35,7 @@ jobs:
       - name: Docker Compose
         run: docker-compose up -d
       - name: Composer install (docker-compose)
-        run: docker-compose exec -T laravel-api composer install
+        run: docker-compose exec -T decipher composer install
       - name: CI checks
-        run: docker-compose exec -T laravel-api composer run ci
+        run: docker-compose exec -T decipher composer run ci
 

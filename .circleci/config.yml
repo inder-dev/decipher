@@ -13,7 +13,7 @@ jobs:
     machine:
       image: ubuntu-2004:202201-02
     resource_class: medium
-    working_directory: ~/laravel-api
+    working_directory: ~/decipher
     environment:
          REVIEWEE_URL: https://api.reviewee.it
          COMMITS_CHECK_ENDPOINT:  repository/${CIRCLE_PROJECT_REPONAME}/haveRejectedCommits
@@ -28,14 +28,14 @@ jobs:
           command: docker-compose up -d
       - run:
           name: Composer install
-          command: docker-compose exec laravel-api composer install -n --prefer-dist
+          command: docker-compose exec decipher composer install -n --prefer-dist
       - run:
           name: CI checks
-          command: docker-compose exec laravel-api composer run ci
-      - run: 
+          command: docker-compose exec decipher composer run ci
+      - run:
           name: Run Newman testcases
-          command: docker-compose exec laravel-api newman run https://api.getpostman.com/collections/${POSTMAN_COLLECTION_ID}?apikey=${POSTMAN_API_KEY} -e https://api.getpostman.com/environments/${POSTMAN_ENV_ID}?apikey=${POSTMAN_API_KEY}
-       
+          command: docker-compose exec decipher newman run https://api.getpostman.com/collections/${POSTMAN_COLLECTION_ID}?apikey=${POSTMAN_API_KEY} -e https://api.getpostman.com/environments/${POSTMAN_ENV_ID}?apikey=${POSTMAN_API_KEY}
+
   deploy:
     machine:
       image: ubuntu-2004:202201-02
@@ -68,10 +68,10 @@ jobs:
          command: docker-compose up -d
       - run:
          name: Composer install
-         command: docker-compose exec laravel-api composer install
+         command: docker-compose exec decipher composer install
       - run:
          name: CI checks
-         command: docker-compose exec laravel-api composer run ci
+         command: docker-compose exec decipher composer run ci
       - run:
          name: Exit CI
          command: exit 0
